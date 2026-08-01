@@ -12,7 +12,7 @@
 
   <style>
     /* ==========================================================================
-       RAJA PRIYA GROUP — AI BLOGGER CMS (AUTO SAVED SECRET EMAIL)
+       RAJA PRIYA GROUP — AI BLOGGER CMS (RICH VISUALS FIX)
        ========================================================================== */
     :root {
       --bg-main:          #07080a;
@@ -413,13 +413,6 @@
           </select>
         </div>
 
-        <!-- SECRET BLOGGER EMAIL SETTING -->
-        <div class="form-group" style="margin-top:24px; padding-top:20px; border-top:1px solid rgba(255,255,255,0.06);">
-          <label class="form-label" style="color:var(--color-gold);">✉️ Secret Blogger Email (For 1-Click Auto Post)</label>
-          <input type="email" id="secretEmailInput" class="form-input" placeholder="rajapriyagroup.rajapriya123@blogger.com" onchange="saveSecretEmail()" />
-          <span style="font-size:0.78rem; color:var(--text-muted); display:block; margin-top:6px;">Paste your secret email here once to enable 1-Click Automatic Publishing!</span>
-        </div>
-
         <button class="btn-gold" onclick="generateAIArticle()">
           <span>⚡ Generate AI Article &amp; Cover</span>
         </button>
@@ -435,7 +428,7 @@
           
           <div id="publishBtnGroup" style="display:none; gap:10px;">
             <button class="btn-gold" onclick="openPublishModal()" style="width:auto; padding:10px 22px;">
-              <span>🚀 Approve &amp; Publish to Blogger</span>
+              <span>🚀 Approve &amp; Render 100% Rich Visuals</span>
             </button>
           </div>
         </div>
@@ -455,56 +448,35 @@
     </div>
   </main>
 
-  <!-- PUBLISHING ASSISTANT MODAL -->
+  <!-- PUBLISHING ASSISTANT MODAL WITH RICH VISUAL COPY FIX -->
   <div id="publishModal" class="modal-overlay">
     <div class="modal-card">
-      <h2 style="font-family:var(--font-heading); color:#ffffff; font-size:1.5rem; margin-bottom:8px;">🎉 Ready to Publish!</h2>
-      <p style="color:var(--text-secondary); font-size:0.88rem; margin-bottom:20px;">Choose your preferred publishing method below:</p>
+      <h2 style="font-family:var(--font-heading); color:#ffffff; font-size:1.5rem; margin-bottom:8px;">🎨 100% Professional Article Render Guide</h2>
+      <p style="color:var(--text-secondary); font-size:0.88rem; margin-bottom:20px;">Follow these 2 quick steps to make your cover images &amp; gold titles render perfectly in Blogger:</p>
 
-      <!-- METHOD 1: AUTOMATIC EMAIL-TO-POST -->
-      <div id="emailPublishBox" class="step-box" style="border-color:var(--color-gold); background:rgba(212,175,55,0.08);">
+      <!-- STEP 1: COPY HTML -->
+      <div class="step-box" style="border-color:var(--color-gold); background:rgba(212,175,55,0.08);">
         <div class="step-header">
-          <span style="font-size:0.8rem; font-weight:700; color:var(--color-gold); text-transform:uppercase;">⚡ Method 1: 1-Click Auto Email Publish</span>
+          <span style="font-size:0.82rem; font-weight:700; color:var(--color-gold); text-transform:uppercase;">Step 1: Copy Full Article Code</span>
+          <button class="btn-copy" onclick="copyHtml(this)" style="padding:8px 18px; font-size:0.88rem;">📋 Copy Article HTML</button>
         </div>
-        <p style="color:#ffffff; font-size:0.88rem; margin-bottom:12px;">Sends automated email to your secret Blogger address to publish immediately!</p>
-        <a id="emailSendBtn" href="#" class="btn-gold" style="text-decoration:none; text-align:center;">
-          <span>✉️ Click to Send Email (Auto-Publishes Live!)</span>
-        </a>
+        <p style="color:#ffffff; font-size:0.86rem; margin-top:4px;">Copies formatted HTML code with HD cover graphic, styled headings, and consultation buttons.</p>
       </div>
 
-      <!-- METHOD 2: 3-STEP COPY ASSISTANT -->
+      <!-- STEP 2: PASTE IN BLOGGER HTML VIEW -->
       <div class="step-box">
-        <div class="step-header">
-          <span style="font-size:0.8rem; font-weight:700; color:var(--color-gold); text-transform:uppercase;">Method 2: Copy &amp; Paste Assistant</span>
-        </div>
-
-        <div style="margin-bottom:10px;">
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
-            <span style="font-size:0.82rem; color:#ffffff; font-weight:600;">Title:</span>
-            <button class="btn-copy" onclick="copyTitle(this)">📋 Copy Title</button>
-          </div>
-          <div id="modalTitleCopy" style="color:var(--color-gold); font-size:0.9rem; font-weight:700;"></div>
-        </div>
-
-        <div style="margin-bottom:10px;">
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
-            <span style="font-size:0.82rem; color:#ffffff; font-weight:600;">Labels:</span>
-            <button class="btn-copy" onclick="copyTags(this)">📋 Copy Labels</button>
-          </div>
-          <div id="modalTagsCopy" style="color:var(--color-gold); font-size:0.84rem;"></div>
-        </div>
-
-        <div>
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
-            <span style="font-size:0.82rem; color:#ffffff; font-weight:600;">HTML Body:</span>
-            <button class="btn-copy" onclick="copyHtml(this)">📋 Copy HTML Code</button>
-          </div>
-        </div>
+        <span style="font-size:0.82rem; font-weight:700; color:#ffffff; text-transform:uppercase;">Step 2: Paste in Blogger HTML View (&lt;&gt;)</span>
+        <ol style="margin-left:20px; color:var(--text-secondary); font-size:0.86rem; line-height:1.8; margin-top:8px;">
+          <li>In your Blogger post editor, click the <strong>Pencil icon (✏️)</strong> at top left.</li>
+          <li>Select <strong>&lt;&gt; HTML View</strong>.</li>
+          <li>Paste (<strong>Ctrl + V</strong>) into the editor.</li>
+          <li>Switch back to <strong>✏️ Compose View</strong> — your cover image, gold titles, and buttons will render in 100% full professional luxury style!</li>
+        </ol>
       </div>
 
       <div style="display:flex; gap:12px; margin-top:20px; flex-wrap:wrap;">
         <a id="bloggerLink" href="https://www.blogger.com/blog/posts/6795137335172819084" target="_blank" class="btn-gold" style="text-decoration:none; text-align:center; flex-grow:1;">
-          <span>🌐 Open Blogger Dashboard</span>
+          <span>🌐 Open Blogger Post Editor</span>
         </a>
         <button class="btn-outline" onclick="closePublishModal()">Close</button>
       </div>
@@ -531,20 +503,6 @@
     };
 
     let currentArticle = null;
-
-    // Load saved secret email on startup
-    window.addEventListener('DOMContentLoaded', () => {
-      const savedEmail = localStorage.getItem('blogger_secret_email') || 'rajapriyagroup.rajapriya123@blogger.com';
-      document.getElementById('secretEmailInput').value = savedEmail;
-    });
-
-    function saveSecretEmail() {
-      const email = document.getElementById('secretEmailInput').value.trim();
-      if (email) {
-        localStorage.setItem('blogger_secret_email', email);
-        showToast('💾 Secret Email Saved!');
-      }
-    }
 
     function generateAIArticle() {
       const topicInput = document.getElementById('topicInput').value.trim();
@@ -637,14 +595,6 @@
 
     function openPublishModal() {
       if (!currentArticle) return;
-
-      document.getElementById('modalTitleCopy').innerText = currentArticle.title;
-      document.getElementById('modalTagsCopy').innerText = currentArticle.labels.join(', ');
-
-      const secretEmail = document.getElementById('secretEmailInput').value.trim() || 'rajapriyagroup.rajapriya123@blogger.com';
-      const mailtoUrl = `mailto:${secretEmail}?subject=${encodeURIComponent(currentArticle.title)}&body=${encodeURIComponent(currentArticle.htmlBody)}`;
-      document.getElementById('emailSendBtn').href = mailtoUrl;
-
       document.getElementById('publishModal').classList.add('show');
     }
 
@@ -652,28 +602,12 @@
       document.getElementById('publishModal').classList.remove('show');
     }
 
-    function copyTitle(btn) {
-      if (!currentArticle) return;
-      navigator.clipboard.writeText(currentArticle.title);
-      btn.innerText = '✅ Copied Title!';
-      showToast('📋 Title copied to clipboard!');
-      setTimeout(() => btn.innerText = '📋 Copy Title', 3000);
-    }
-
-    function copyTags(btn) {
-      if (!currentArticle) return;
-      navigator.clipboard.writeText(currentArticle.labels.join(', '));
-      btn.innerText = '✅ Copied Labels!';
-      showToast('📋 Labels copied to clipboard!');
-      setTimeout(() => btn.innerText = '📋 Copy Labels', 3000);
-    }
-
     function copyHtml(btn) {
       if (!currentArticle) return;
       navigator.clipboard.writeText(currentArticle.htmlBody);
-      btn.innerText = '✅ Copied Full HTML!';
-      showToast('📋 HTML Code copied to clipboard!');
-      setTimeout(() => btn.innerText = '📋 Copy HTML Code', 3000);
+      btn.innerText = '✅ Copied HTML Code!';
+      showToast('📋 Article HTML copied to clipboard!');
+      setTimeout(() => btn.innerText = '📋 Copy Article HTML', 3000);
     }
 
     function showToast(msg) {
