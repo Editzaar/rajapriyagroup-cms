@@ -12,7 +12,7 @@
 
   <style>
     /* ==========================================================================
-       RAJA PRIYA GROUP — AI BLOGGER CMS (EASY COPY ASSISTANT)
+       RAJA PRIYA GROUP — AI BLOGGER CMS (SECRET EMAIL-TO-POST AUTOMATION)
        ========================================================================== */
     :root {
       --bg-main:          #07080a;
@@ -296,7 +296,7 @@
       border-radius: var(--radius-xl);
     }
 
-    /* Publishing Modal Overlay */
+    /* Modal Overlay */
     .modal-overlay {
       display: none;
       position: fixed;
@@ -322,7 +322,6 @@
       box-shadow: var(--shadow-apple);
     }
 
-    /* Step boxes */
     .step-box {
       background: rgba(255,255,255,0.03);
       border: var(--border-glass);
@@ -414,6 +413,13 @@
           </select>
         </div>
 
+        <!-- SECRET BLOGGER EMAIL SETTING (OPTIONAL 1-CLICK EMAIL PUBLISH) -->
+        <div class="form-group" style="margin-top:24px; padding-top:20px; border-top:1px solid rgba(255,255,255,0.06);">
+          <label class="form-label" style="color:var(--color-gold);">✉️ Secret Blogger Email (Optional Automatic Post)</label>
+          <input type="email" id="secretEmailInput" class="form-input" placeholder="e.g. username.secretword@blogger.com" />
+          <span style="font-size:0.78rem; color:var(--text-muted); display:block; margin-top:6px;">Set once in Blogger Settings -> Publishing posts using email.</span>
+        </div>
+
         <button class="btn-gold" onclick="generateAIArticle()">
           <span>⚡ Generate AI Article &amp; Cover</span>
         </button>
@@ -449,42 +455,56 @@
     </div>
   </main>
 
-  <!-- PUBLISHING ASSISTANT MODAL WITH 3 COPY BUTTONS -->
+  <!-- PUBLISHING ASSISTANT MODAL -->
   <div id="publishModal" class="modal-overlay">
     <div class="modal-card">
-      <h2 style="font-family:var(--font-heading); color:#ffffff; font-size:1.5rem; margin-bottom:8px;">🎉 Ready to Publish in 3 Easy Clicks!</h2>
-      <p style="color:var(--text-secondary); font-size:0.88rem; margin-bottom:20px;">Use the copy buttons below to paste your Title, Tags, and HTML Code into Blogger:</p>
+      <h2 style="font-family:var(--font-heading); color:#ffffff; font-size:1.5rem; margin-bottom:8px;">🎉 Ready to Publish!</h2>
+      <p style="color:var(--text-secondary); font-size:0.88rem; margin-bottom:20px;">Choose your preferred publishing method below:</p>
 
-      <!-- STEP 1: TITLE -->
-      <div class="step-box">
+      <!-- METHOD A: AUTOMATIC EMAIL-TO-POST (IF SECRET EMAIL IS ENTERED) -->
+      <div id="emailPublishBox" class="step-box" style="border-color:var(--color-gold); background:rgba(212,175,55,0.08); display:none;">
         <div class="step-header">
-          <span style="font-size:0.8rem; font-weight:700; color:var(--color-gold); text-transform:uppercase;">1. Post Title</span>
-          <button class="btn-copy" onclick="copyTitle(this)">📋 Copy Title</button>
+          <span style="font-size:0.8rem; font-weight:700; color:var(--color-gold); text-transform:uppercase;">⚡ Method 1: 1-Click Auto Email Publish</span>
         </div>
-        <div id="modalTitleCopy" style="color:#ffffff; font-weight:700; font-size:1rem;"></div>
+        <p style="color:#ffffff; font-size:0.88rem; margin-bottom:12px;">Send an automated email to your secret Blogger address to publish immediately!</p>
+        <a id="emailSendBtn" href="#" class="btn-gold" style="text-decoration:none; text-align:center;">
+          <span>✉️ Click to Send Email (Auto-Publishes Live!)</span>
+        </a>
       </div>
 
-      <!-- STEP 2: LABELS / TAGS -->
+      <!-- METHOD B: 3-STEP COPY ASSISTANT -->
       <div class="step-box">
         <div class="step-header">
-          <span style="font-size:0.8rem; font-weight:700; color:var(--color-gold); text-transform:uppercase;">2. Labels / Categories</span>
-          <button class="btn-copy" onclick="copyTags(this)">📋 Copy Labels</button>
+          <span style="font-size:0.8rem; font-weight:700; color:var(--color-gold); text-transform:uppercase;">Method 2: Copy &amp; Paste Assistant</span>
         </div>
-        <div id="modalTagsCopy" style="color:var(--color-gold); font-size:0.86rem;"></div>
-      </div>
 
-      <!-- STEP 3: HTML BODY CODE -->
-      <div class="step-box" style="border-color:var(--color-gold); background:rgba(212,175,55,0.06);">
-        <div class="step-header">
-          <span style="font-size:0.8rem; font-weight:700; color:var(--color-gold); text-transform:uppercase;">3. HTML Article Code (Switch Blogger to &lt;&gt; HTML view)</span>
-          <button class="btn-copy" onclick="copyHtml(this)">📋 Copy Full HTML Code</button>
+        <div style="margin-bottom:10px;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+            <span style="font-size:0.82rem; color:#ffffff; font-weight:600;">Title:</span>
+            <button class="btn-copy" onclick="copyTitle(this)">📋 Copy Title</button>
+          </div>
+          <div id="modalTitleCopy" style="color:var(--color-gold); font-size:0.9rem; font-weight:700;"></div>
         </div>
-        <p style="color:#86868b; font-size:0.82rem;">Includes styled headings, bullet points, cover graphic, and consultation CTA buttons.</p>
+
+        <div style="margin-bottom:10px;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+            <span style="font-size:0.82rem; color:#ffffff; font-weight:600;">Labels:</span>
+            <button class="btn-copy" onclick="copyTags(this)">📋 Copy Labels</button>
+          </div>
+          <div id="modalTagsCopy" style="color:var(--color-gold); font-size:0.84rem;"></div>
+        </div>
+
+        <div>
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+            <span style="font-size:0.82rem; color:#ffffff; font-weight:600;">HTML Body:</span>
+            <button class="btn-copy" onclick="copyHtml(this)">📋 Copy HTML Code</button>
+          </div>
+        </div>
       </div>
 
       <div style="display:flex; gap:12px; margin-top:20px; flex-wrap:wrap;">
         <a id="bloggerLink" href="https://www.blogger.com/blog/posts/6795137335172819084" target="_blank" class="btn-gold" style="text-decoration:none; text-align:center; flex-grow:1;">
-          <span>🌐 Open Blogger (+ NEW POST)</span>
+          <span>🌐 Open Blogger Dashboard</span>
         </a>
         <button class="btn-outline" onclick="closePublishModal()">Close</button>
       </div>
@@ -606,6 +626,19 @@
 
       document.getElementById('modalTitleCopy').innerText = currentArticle.title;
       document.getElementById('modalTagsCopy').innerText = currentArticle.labels.join(', ');
+
+      // Secret email auto-publisher setup
+      const secretEmail = document.getElementById('secretEmailInput').value.trim();
+      const emailBox = document.getElementById('emailPublishBox');
+      
+      if (secretEmail) {
+        const mailtoUrl = `mailto:${secretEmail}?subject=${encodeURIComponent(currentArticle.title)}&body=${encodeURIComponent(currentArticle.htmlBody)}`;
+        document.getElementById('emailSendBtn').href = mailtoUrl;
+        emailBox.style.display = 'block';
+      } else {
+        emailBox.style.display = 'none';
+      }
+
       document.getElementById('publishModal').classList.add('show');
     }
 
@@ -634,7 +667,7 @@
       navigator.clipboard.writeText(currentArticle.htmlBody);
       btn.innerText = '✅ Copied Full HTML!';
       showToast('📋 HTML Code copied to clipboard!');
-      setTimeout(() => btn.innerText = '📋 Copy Full HTML Code', 3000);
+      setTimeout(() => btn.innerText = '📋 Copy HTML Code', 3000);
     }
 
     function showToast(msg) {
