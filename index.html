@@ -12,7 +12,7 @@
 
   <style>
     /* ==========================================================================
-       RAJA PRIYA GROUP — AI BLOGGER CMS (SELF-CONTAINED WITH EXACT BLOG ID)
+       RAJA PRIYA GROUP — AI BLOGGER CMS (EASY COPY ASSISTANT)
        ========================================================================== */
     :root {
       --bg-main:          #07080a;
@@ -220,6 +220,22 @@
       box-shadow: 0 12px 32px rgba(212, 175, 55, 0.4);
     }
 
+    .btn-copy {
+      background: rgba(212, 175, 55, 0.15);
+      border: var(--border-gold);
+      color: var(--color-gold);
+      font-weight: 700;
+      font-size: 0.8rem;
+      padding: 6px 14px;
+      border-radius: var(--radius-xl);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .btn-copy:hover {
+      background: var(--gradient-gold);
+      color: #07080a;
+    }
+
     .btn-outline {
       background: rgba(255, 255, 255, 0.04);
       border: var(--border-glass);
@@ -300,10 +316,25 @@
       background: #121318;
       border: var(--border-gold);
       border-radius: var(--radius-lg);
-      max-width: 600px;
+      max-width: 640px;
       width: 100%;
       padding: 36px;
       box-shadow: var(--shadow-apple);
+    }
+
+    /* Step boxes */
+    .step-box {
+      background: rgba(255,255,255,0.03);
+      border: var(--border-glass);
+      padding: 16px;
+      border-radius: 12px;
+      margin-bottom: 14px;
+    }
+    .step-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 8px;
     }
 
     /* Toast Notification */
@@ -418,26 +449,42 @@
     </div>
   </main>
 
-  <!-- PUBLISHING ASSISTANT MODAL WITH EXACT BLOGGER BLOG ID -->
+  <!-- PUBLISHING ASSISTANT MODAL WITH 3 COPY BUTTONS -->
   <div id="publishModal" class="modal-overlay">
     <div class="modal-card">
-      <h2 style="font-family:var(--font-heading); color:#ffffff; font-size:1.6rem; margin-bottom:12px;">🎉 Article Approved &amp; Formatted!</h2>
-      <p style="color:var(--text-secondary); font-size:0.92rem; margin-bottom:24px;">Follow these 2 simple steps to publish directly to Blogger in 5 seconds:</p>
+      <h2 style="font-family:var(--font-heading); color:#ffffff; font-size:1.5rem; margin-bottom:8px;">🎉 Ready to Publish in 3 Easy Clicks!</h2>
+      <p style="color:var(--text-secondary); font-size:0.88rem; margin-bottom:20px;">Use the copy buttons below to paste your Title, Tags, and HTML Code into Blogger:</p>
 
-      <div style="background:rgba(255,255,255,0.03); border:var(--border-glass); padding:16px; border-radius:12px; margin-bottom:16px;">
-        <span style="font-size:0.8rem; font-weight:700; color:var(--color-gold); text-transform:uppercase;">Step 1: Copy Formatted Title &amp; Tags</span>
-        <div id="modalTitleCopy" style="color:#ffffff; font-weight:700; margin-top:6px; font-size:1.05rem;"></div>
-        <div id="modalTagsCopy" style="color:var(--color-gold); font-size:0.85rem; margin-top:4px;"></div>
+      <!-- STEP 1: TITLE -->
+      <div class="step-box">
+        <div class="step-header">
+          <span style="font-size:0.8rem; font-weight:700; color:var(--color-gold); text-transform:uppercase;">1. Post Title</span>
+          <button class="btn-copy" onclick="copyTitle(this)">📋 Copy Title</button>
+        </div>
+        <div id="modalTitleCopy" style="color:#ffffff; font-weight:700; font-size:1rem;"></div>
       </div>
 
-      <div style="background:rgba(212,175,55,0.08); border:var(--border-gold); padding:16px; border-radius:12px; margin-bottom:24px;">
-        <span style="font-size:0.8rem; font-weight:700; color:var(--color-gold); text-transform:uppercase;">Step 2: HTML Article Code Copied to Clipboard!</span>
-        <p style="color:#e3e3e8; font-size:0.88rem; margin-top:4px;">The full HTML code (with cover image, headings, &amp; consultation buttons) has been copied automatically.</p>
+      <!-- STEP 2: LABELS / TAGS -->
+      <div class="step-box">
+        <div class="step-header">
+          <span style="font-size:0.8rem; font-weight:700; color:var(--color-gold); text-transform:uppercase;">2. Labels / Categories</span>
+          <button class="btn-copy" onclick="copyTags(this)">📋 Copy Labels</button>
+        </div>
+        <div id="modalTagsCopy" style="color:var(--color-gold); font-size:0.86rem;"></div>
       </div>
 
-      <div style="display:flex; gap:12px; flex-wrap:wrap;">
-        <a id="bloggerLink" href="https://www.blogger.com/blog/posts/6795137335172819084" target="_blank" class="btn-gold" style="text-decoration:none; text-align:center;">
-          <span>🌐 Open Your Blogger Posts Dashboard</span>
+      <!-- STEP 3: HTML BODY CODE -->
+      <div class="step-box" style="border-color:var(--color-gold); background:rgba(212,175,55,0.06);">
+        <div class="step-header">
+          <span style="font-size:0.8rem; font-weight:700; color:var(--color-gold); text-transform:uppercase;">3. HTML Article Code (Switch Blogger to &lt;&gt; HTML view)</span>
+          <button class="btn-copy" onclick="copyHtml(this)">📋 Copy Full HTML Code</button>
+        </div>
+        <p style="color:#86868b; font-size:0.82rem;">Includes styled headings, bullet points, cover graphic, and consultation CTA buttons.</p>
+      </div>
+
+      <div style="display:flex; gap:12px; margin-top:20px; flex-wrap:wrap;">
+        <a id="bloggerLink" href="https://www.blogger.com/blog/posts/6795137335172819084" target="_blank" class="btn-gold" style="text-decoration:none; text-align:center; flex-grow:1;">
+          <span>🌐 Open Blogger (+ NEW POST)</span>
         </a>
         <button class="btn-outline" onclick="closePublishModal()">Close</button>
       </div>
@@ -557,20 +604,37 @@
     function openPublishModal() {
       if (!currentArticle) return;
 
-      // Automatically copy HTML content to clipboard
-      navigator.clipboard.writeText(currentArticle.htmlBody).then(() => {
-        showToast('📋 HTML Article Code copied to clipboard!');
-      }).catch(err => {
-        console.log('Clipboard error:', err);
-      });
-
-      document.getElementById('modalTitleCopy').innerText = `Title: ${currentArticle.title}`;
-      document.getElementById('modalTagsCopy').innerText = `Labels/Tags: ${currentArticle.labels.join(', ')}`;
+      document.getElementById('modalTitleCopy').innerText = currentArticle.title;
+      document.getElementById('modalTagsCopy').innerText = currentArticle.labels.join(', ');
       document.getElementById('publishModal').classList.add('show');
     }
 
     function closePublishModal() {
       document.getElementById('publishModal').classList.remove('show');
+    }
+
+    function copyTitle(btn) {
+      if (!currentArticle) return;
+      navigator.clipboard.writeText(currentArticle.title);
+      btn.innerText = '✅ Copied Title!';
+      showToast('📋 Title copied to clipboard!');
+      setTimeout(() => btn.innerText = '📋 Copy Title', 3000);
+    }
+
+    function copyTags(btn) {
+      if (!currentArticle) return;
+      navigator.clipboard.writeText(currentArticle.labels.join(', '));
+      btn.innerText = '✅ Copied Labels!';
+      showToast('📋 Labels copied to clipboard!');
+      setTimeout(() => btn.innerText = '📋 Copy Labels', 3000);
+    }
+
+    function copyHtml(btn) {
+      if (!currentArticle) return;
+      navigator.clipboard.writeText(currentArticle.htmlBody);
+      btn.innerText = '✅ Copied Full HTML!';
+      showToast('📋 HTML Code copied to clipboard!');
+      setTimeout(() => btn.innerText = '📋 Copy Full HTML Code', 3000);
     }
 
     function showToast(msg) {
