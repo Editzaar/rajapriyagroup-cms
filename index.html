@@ -12,7 +12,7 @@
 
   <style>
     /* ==========================================================================
-       RAJA PRIYA GROUP — AI BLOGGER CMS (1-CLICK INSTANT PUBLISHER)
+       RAJA PRIYA GROUP — AI BLOGGER CMS (RICH EMAIL FORMATTING FIX)
        ========================================================================== */
     :root {
       --bg-main:          #07080a;
@@ -454,30 +454,33 @@
     </div>
   </main>
 
-  <!-- PUBLISHING MODAL WITH 2 CLEAR OPTIONS -->
+  <!-- PUBLISHING MODAL WITH RICH TEXT & HTML COPY -->
   <div id="publishModal" class="modal-overlay">
     <div class="modal-card">
-      <h2 style="font-family:var(--font-heading); color:#ffffff; font-size:1.5rem; margin-bottom:8px;">🎉 Ready to Publish Live!</h2>
-      <p style="color:var(--text-secondary); font-size:0.88rem; margin-bottom:20px;">Choose your preferred publishing method below:</p>
+      <h2 style="font-family:var(--font-heading); color:#ffffff; font-size:1.5rem; margin-bottom:8px;">🎨 Professional Article Publishing Guide</h2>
+      <p style="color:var(--text-secondary); font-size:0.88rem; margin-bottom:20px;">For 100% Rich Visuals, Cover Graphics, &amp; Styled Headings:</p>
 
-      <!-- METHOD 1: 1-CLICK EMAIL AUTO-PUBLISH -->
+      <!-- METHOD 1: 1-CLICK HTML COPY FOR BLOGGER <> VIEW -->
       <div class="step-box" style="border-color:var(--color-gold); background:rgba(212,175,55,0.08);">
         <div class="step-header">
-          <span style="font-size:0.82rem; font-weight:700; color:var(--color-gold); text-transform:uppercase;">⚡ Method 1: Instant Email Publish (1 Click)</span>
+          <span style="font-size:0.82rem; font-weight:700; color:var(--color-gold); text-transform:uppercase;">⚡ Recommended: Copy HTML Code for Blogger &lt;&gt; View</span>
+          <button class="btn-copy" onclick="copyHtml(this)" style="padding:8px 18px; font-size:0.88rem;">📋 Copy Article HTML</button>
         </div>
-        <p style="color:#ffffff; font-size:0.88rem; margin-bottom:12px;">Opens your email app (Gmail/Outlook) pre-filled with the article ➔ Just click <strong>Send</strong> to publish live!</p>
-        <a id="emailSendBtn" href="#" class="btn-gold" style="text-decoration:none; text-align:center;">
-          <span>✉️ Click to Send Email (Auto-Publishes Live!)</span>
-        </a>
+        <p style="color:#ffffff; font-size:0.86rem; margin-top:4px;">
+          1. In Blogger Editor, switch to <strong>&lt;&gt; HTML View</strong> (top left).<br/>
+          2. Paste (<strong>Ctrl + V</strong>) and click <strong>Publish</strong>!
+        </p>
       </div>
 
-      <!-- METHOD 2: COPY HTML CODE -->
+      <!-- METHOD 2: 1-CLICK EMAIL SEND -->
       <div class="step-box">
         <div class="step-header">
-          <span style="font-size:0.82rem; font-weight:700; color:#ffffff; text-transform:uppercase;">Method 2: Copy Article HTML</span>
-          <button class="btn-copy" onclick="copyHtml(this)">📋 Copy HTML Code</button>
+          <span style="font-size:0.82rem; font-weight:700; color:#ffffff; text-transform:uppercase;">Method 2: Send Formatted Email</span>
         </div>
-        <p style="color:var(--text-secondary); font-size:0.84rem;">Copy HTML code to paste into Blogger's <strong>&lt;&gt; HTML View</strong> for 100% rich visuals.</p>
+        <p style="color:var(--text-secondary); font-size:0.84rem; margin-bottom:10px;">Sends pre-formatted text &amp; cover image link directly to your secret Blogger address.</p>
+        <a id="emailSendBtn" href="#" class="btn-gold" style="text-decoration:none; text-align:center;">
+          <span>✉️ Send Email to Blogger</span>
+        </a>
       </div>
 
       <div style="display:flex; gap:12px; margin-top:20px; flex-wrap:wrap;">
@@ -573,12 +576,15 @@
 </div>
 `;
 
+      const plainEmailText = `${summaryInput ? summaryInput : `In today's fast-evolving market, understanding ${topicInput} is crucial for long-term growth and high ROI. Raja Priya Group brings you an in-depth analysis and expert guide.`}\n\nCover Image: ${coverImg}\n\n1. Key Market Trends & Strategic Advantages\nNavigating ${topicInput} requires a structured approach. Targeted Reach, Professional Execution, and Long-Term Value.\n\n2. How Raja Priya Group Delivers Results\nAt Raja Priya Group, we integrate real estate development expertise with cutting-edge digital media services.\n\nGet Consultation: https://editzaar.github.io/rajapriyagroup-creator/contact.html`;
+
       currentArticle = {
         title,
         labels,
         metaDescription,
         coverImg,
         htmlBody,
+        plainEmailText,
         generatedAt: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
       };
 
@@ -603,7 +609,7 @@
       if (!currentArticle) return;
 
       const secretEmail = document.getElementById('secretEmailInput').value.trim() || 'rajapriyagroup.rajapriya123@blogger.com';
-      const mailtoUrl = `mailto:${secretEmail}?subject=${encodeURIComponent(currentArticle.title)}&body=${encodeURIComponent(currentArticle.htmlBody)}`;
+      const mailtoUrl = `mailto:${secretEmail}?subject=${encodeURIComponent(currentArticle.title)}&body=${encodeURIComponent(currentArticle.plainEmailText)}`;
       document.getElementById('emailSendBtn').href = mailtoUrl;
 
       document.getElementById('publishModal').classList.add('show');
@@ -618,7 +624,7 @@
       navigator.clipboard.writeText(currentArticle.htmlBody);
       btn.innerText = '✅ Copied HTML Code!';
       showToast('📋 Article HTML copied to clipboard!');
-      setTimeout(() => btn.innerText = '📋 Copy HTML Code', 3000);
+      setTimeout(() => btn.innerText = '📋 Copy Article HTML', 3000);
     }
 
     function showToast(msg) {
