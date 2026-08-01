@@ -1,0 +1,9 @@
+{
+  "name": "rajapriyagroup-cms",
+  "version": "1.0.0",
+  "description": "AI Blogger CMS Cloud Web App for Raja Priya Group",
+  "main": "index.html",
+  "dependencies": {
+    "nodemailer": "^6.9.10"
+  }
+}
