@@ -376,7 +376,7 @@
       <div class="user-profile">
         <div class="status-pill">
           <span class="status-dot"></span>
-          <span>Powered by Groq Llama-3.3 70B (500 tokens/sec)</span>
+          <span>Groq Llama-3.3 70B Active (500 tokens/sec)</span>
         </div>
       </div>
     </div>
@@ -395,12 +395,12 @@
 
         <div class="form-group">
           <label class="form-label">Article Topic or Keyword</label>
-          <input type="text" id="topicInput" class="form-input" placeholder="e.g. Top 5 Real Estate Ventures in Hyderabad 2026" />
+          <input type="text" id="topicInput" class="form-input" placeholder="e.g. Top 5 Real Estate Investment Areas in Hyderabad 2026" />
         </div>
 
         <div class="form-group">
           <label class="form-label">Brief Summary / Tone</label>
-          <textarea id="summaryInput" class="form-textarea" rows="3" placeholder="e.g. Professional luxury tone with high engagement focus..."></textarea>
+          <textarea id="summaryInput" class="form-textarea" rows="3" placeholder="e.g. Highlight plot growth, luxury amenities, and commercial ROI..."></textarea>
         </div>
 
         <div class="form-group">
@@ -413,10 +413,11 @@
           </select>
         </div>
 
-        <!-- OPTIONAL GROQ API KEY -->
+        <!-- GROQ API KEY INPUT -->
         <div class="form-group" style="margin-top:20px; padding-top:16px; border-top:1px solid rgba(255,255,255,0.06);">
-          <label class="form-label" style="color:var(--color-gold);">🔑 Groq Free API Key (Optional)</label>
-          <input type="password" id="groqApiKeyInput" class="form-input" placeholder="gsk_... (Free from console.groq.com)" onchange="saveGroqKey()" />
+          <label class="form-label" style="color:var(--color-gold);">🔑 Groq Free API Key</label>
+          <input type="password" id="groqApiKeyInput" class="form-input" placeholder="Paste your gsk_... key" onchange="saveGroqKey()" />
+          <span style="font-size:0.78rem; color:var(--text-muted); display:block; margin-top:6px;">Saved in browser memory.</span>
         </div>
 
         <button class="btn-gold" onclick="generateWithGroqAI()">
@@ -458,7 +459,7 @@
   <div id="publishModal" class="modal-overlay">
     <div class="modal-card">
       <h2 style="font-family:var(--font-heading); color:#ffffff; font-size:1.5rem; margin-bottom:8px;">🎨 Professional Article Code Ready!</h2>
-      <p style="color:var(--text-secondary); font-size:0.88rem; margin-bottom:20px;">Click below to copy your complete article HTML code:</p>
+      <p style="color:var(--text-secondary); font-size:0.88rem; margin-bottom:20px;">Click below to copy your Groq AI article HTML code:</p>
 
       <div class="step-box" style="border-color:var(--color-gold); background:rgba(212,175,55,0.08);">
         <div class="step-header">
@@ -502,7 +503,9 @@
 
     window.addEventListener('DOMContentLoaded', () => {
       const savedKey = localStorage.getItem('groq_api_key') || '';
-      if (savedKey) { document.getElementById('groqApiKeyInput').value = savedKey; }
+      if (savedKey) {
+        document.getElementById('groqApiKeyInput').value = savedKey;
+      }
     });
 
     function saveGroqKey() {
@@ -516,7 +519,7 @@
     async function generateWithGroqAI() {
       const topicInput = document.getElementById('topicInput').value.trim();
       const summaryInput = document.getElementById('summaryInput').value.trim();
-      const groqKey = document.getElementById('groqApiKeyInput').value.trim() || localStorage.getItem('groq_api_key');
+      let groqKey = document.getElementById('groqApiKeyInput').value.trim() || localStorage.getItem('groq_api_key');
 
       if (!topicInput) {
         showToast('⚠️ Please enter a Topic first!');
@@ -539,7 +542,6 @@
 
       const title = topicInput.replace(/\w\S*/g, (txt) => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase());
 
-      // If user provided a Groq API Key, call Groq AI directly!
       if (groqKey) {
         try {
           const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
@@ -552,15 +554,16 @@
               model: 'llama-3.3-70b-versatile',
               messages: [{
                 role: 'system',
-                content: 'You are an expert SEO copywriter for Raja Priya Group in Hyderabad. Output pure HTML body without <html> or <body> tags. Include styled <h2> headers in gold (#d4af37), <ul> lists, bold highlights, and a call to action.'
+                content: 'You are a master SEO copywriter for Raja Priya Group in Hyderabad. Output pure HTML content without <html> or <body> tags. Use styled <h2> headers in gold color (#d4af37), <p> paragraphs, <ul> bullet points, bold key takeaways, and a call-to-action block for Raja Priya Group.'
               }, {
                 role: 'user',
-                content: `Write an 800+ word viral SEO article on topic: "${topicInput}". Outline: "${summaryInput}".`
+                content: `Write a comprehensive, engaging 800+ word viral blog article about: "${topicInput}". Outline notes: "${summaryInput}".`
               }]
             })
           });
 
           const data = await response.json();
+
           if (data.choices && data.choices[0]) {
             const aiGeneratedHtml = data.choices[0].message.content;
             currentArticle = {
@@ -572,11 +575,11 @@
               generatedAt: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
             };
             renderPreview();
-            showToast('🚀 Generated with Groq AI Llama-3.3-70B!');
+            showToast('🚀 Groq AI Article & Cover Image Ready!');
             return;
           }
         } catch (err) {
-          console.log('Groq API Note:', err);
+          console.log('Groq API Call:', err);
         }
       }
 
