@@ -12,7 +12,7 @@
 
   <style>
     /* ==========================================================================
-       RAJA PRIYA GROUP — GROQ AI BLOGGER CMS (DYNAMIC IMAGE & DEEP CONTENT)
+       RAJA PRIYA GROUP — GROQ AI BLOGGER CMS (PURE DARK GLASS FORMATTING)
        ========================================================================== */
     :root {
       --bg-main:          #07080a;
@@ -370,13 +370,13 @@
     <div class="container header-inner">
       <a href="#" class="brand-logo">
         Raja Priya <span>GROUP</span>
-        <span class="badge-cms">GROQ AI LIVE</span>
+        <span class="badge-cms">DARK GLASS AI</span>
       </a>
 
       <div class="user-profile">
         <div class="status-pill">
           <span class="status-dot"></span>
-          <span>Dynamic Dynamic HD Images &amp; Deep SEO Active</span>
+          <span>100% Dark Glass Styling Active</span>
         </div>
       </div>
     </div>
@@ -390,7 +390,7 @@
       <section class="cms-card">
         <div class="card-head">
           <h2>🚀 Groq AI Article Generator</h2>
-          <p>Generates 1200+ word viral SEO articles with unique HD cover graphics.</p>
+          <p>Generates 1200+ word viral SEO articles in pure dark glass styling.</p>
         </div>
 
         <div class="form-group">
@@ -421,7 +421,7 @@
         </div>
 
         <button class="btn-gold" onclick="generateWithGroqAI()">
-          <span>⚡ Generate Deep Viral Article &amp; HD Cover</span>
+          <span>⚡ Generate Deep Dark Glass Article</span>
         </button>
       </section>
 
@@ -446,7 +446,7 @@
           <div id="previewTags" class="preview-tags"></div>
           <div id="previewContent">
             <p style="color:#86868b; line-height:1.7;">
-              Powered by <strong>Groq AI Llama-3.3-70B</strong>. Generates 1200+ word structured articles with gold headings, bullet points, dynamic HD cover graphics, and consultation CTA buttons in under 2 seconds.
+              Powered by <strong>Groq AI Llama-3.3-70B</strong>. Generates 1200+ word structured articles with gold headings, bullet points, dynamic HD cover graphics, and dark glass CTA buttons in under 2 seconds.
             </p>
           </div>
         </div>
@@ -485,7 +485,6 @@
 
   <!-- EMBEDDED JAVASCRIPT LOGIC -->
   <script>
-    // CURATED DYNAMIC HD PHOTO POOL FOR EVERY TOPIC
     const DYNAMIC_PHOTO_POOL = {
       'real estate': [
         'https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=1200&q=80',
@@ -530,6 +529,14 @@
       }
       const index = Math.abs(hash) % pool.length;
       return pool[index];
+    }
+
+    function sanitizeDarkThemeHtml(htmlStr) {
+      // Remove any white background or light color inline styles
+      return htmlStr
+        .replace(/background\s*:\s*(#fff|#ffffff|white|rgb\(255,\s*255,\s*255\)|rgba\(255,\s*255,\s*255[^)]*\))/gi, 'background: rgba(212, 175, 55, 0.08)')
+        .replace(/background-color\s*:\s*(#fff|#ffffff|white|rgb\(255,\s*255,\s*255\)|rgba\(255,\s*255,\s*255[^)]*\))/gi, 'background-color: rgba(212, 175, 55, 0.08)')
+        .replace(/color\s*:\s*(#000|#000000|black|#333|#222)/gi, 'color: #ffffff');
     }
 
     window.addEventListener('DOMContentLoaded', () => {
@@ -588,16 +595,16 @@
               messages: [{
                 role: 'system',
                 content: `You are an elite SEO Content Strategist for Raja Priya Group in Hyderabad. Output pure HTML content without <html> or <body> tags.
-Requirements:
-1. Write 1000+ words of engaging, high-converting content.
-2. Use styled <h2> headers in gold (#d4af37) with clear section numbers.
-3. Use <h3> subheaders for specific subtopics.
-4. Include <ul> and <ol> bullet points with bold highlights for readability.
-5. Create a styled Key Takeaways highlight box (background: rgba(212,175,55,0.08), border: 1px solid rgba(212,175,55,0.4), padding: 20px, border-radius: 14px).
-6. Conclude with a strong Consultation CTA block for Raja Priya Group (Real Estate, Video Editing, Web Development, Brand Growth in Hyderabad) linking to https://editzaar.github.io/rajapriyagroup-creator/contact.html.`
+STRICT STYLING RULES:
+- NEVER use white (#ffffff) or light background colors for any container or callout box.
+- All callout boxes, key takeaways, or highlight cards MUST use dark glass styling: style="background: rgba(212,175,55,0.08); border: 1px solid rgba(212,175,55,0.35); padding: 24px; border-radius: 16px; margin: 24px 0; color: #ffffff;"
+- All headings <h2> MUST be in gold color: style="color: #d4af37; font-size: 1.8rem; margin: 32px 0 16px;"
+- All <h3> subheaders MUST be white: style="color: #ffffff; font-size: 1.3rem; margin: 24px 0 12px;"
+- Buttons MUST use gold gradient styling: style="background: linear-gradient(135deg, #c59b27, #e6c867); color: #07080a; font-weight: 700; padding: 12px 24px; border-radius: 24px; text-decoration: none; display: inline-block;"
+- Conclude with a strong Consultation CTA block for Raja Priya Group (Real Estate, Video Editing, Web Development, Brand Growth in Hyderabad) linking to https://editzaar.github.io/rajapriyagroup-creator/contact.html.`
               }, {
                 role: 'user',
-                content: `Write an in-depth, authoritative, viral SEO blog article on: "${topicInput}". Specific notes: "${summaryInput}".`
+                content: `Write a comprehensive 1000+ word viral SEO blog article on topic: "${topicInput}". Notes: "${summaryInput}".`
               }]
             })
           });
@@ -605,7 +612,9 @@ Requirements:
           const data = await response.json();
 
           if (data.choices && data.choices[0]) {
-            const aiGeneratedHtml = data.choices[0].message.content;
+            let aiGeneratedHtml = data.choices[0].message.content;
+            aiGeneratedHtml = sanitizeDarkThemeHtml(aiGeneratedHtml);
+
             currentArticle = {
               title,
               labels,
@@ -615,7 +624,7 @@ Requirements:
               generatedAt: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
             };
             renderPreview();
-            showToast('🚀 Groq AI Deep Article & Unique Cover Image Ready!');
+            showToast('🚀 Groq AI Article Ready in 100% Dark Glass Style!');
             return;
           }
         } catch (err) {
@@ -671,7 +680,7 @@ Requirements:
       };
 
       renderPreview();
-      showToast('✅ Article & Unique Cover Image Ready!');
+      showToast('✅ Article Ready in Pure Dark Glass Style!');
     }
 
     function renderPreview() {
