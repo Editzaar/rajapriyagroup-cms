@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Raja Priya Group — AI Blogger CMS Platform</title>
+
+  <!-- Google Fonts: Outfit & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- CSS Stylesheet -->
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+
+<body>
+  <!-- HEADER -->
+  <header class="cms-header">
+    <div class="container header-inner">
+      <a href="#" class="brand-logo">
+        Raja Priya <span>GROUP</span>
+        <span class="badge-cms">AI CMS VERCEL</span>
+      </a>
+
+      <div class="user-profile">
+        <div class="status-pill">
+          <span class="status-dot"></span>
+          <span>Employee &amp; Admin Workspace Live</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN DASHBOARD GRID -->
+  <main class="container">
+    <div class="dashboard-grid">
+      
+      <!-- LEFT: INPUT & AI GENERATOR PANEL -->
+      <section class="cms-card">
+        <div class="card-head">
+          <h2>🤖 AI Article &amp; Image Generator</h2>
+          <p>Type a topic or summary to generate a full article with cover graphics &amp; SEO tags.</p>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Article Topic or Headline</label>
+          <input type="text" id="topicInput" class="form-input" placeholder="e.g. Top Real Estate Investment Areas in Hyderabad 2026" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Brief Summary / Outline (Optional)</label>
+          <textarea id="summaryInput" class="form-textarea" rows="4" placeholder="e.g. Highlight key plot ventures, commercial growth corridors, and ROI projections..."></textarea>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Primary Category</label>
+          <select id="categorySelect" class="form-select">
+            <option value="real estate">🏢 Real Estate &amp; Construction</option>
+            <option value="video">🎬 Video Editing Services</option>
+            <option value="web">💻 Website Development</option>
+            <option value="brand">📣 Brand Growth &amp; Social Media</option>
+          </select>
+        </div>
+
+        <button class="btn-gold" onclick="generateAIArticle()">
+          <span>⚡ Generate AI Article &amp; Cover</span>
+        </button>
+      </section>
+
+      <!-- RIGHT: LIVE PREVIEW & CONFIRMATION CANVAS -->
+      <section class="cms-card">
+        <div class="card-head" style="display:flex; align-items:center; justify-content:space-between;">
+          <div>
+            <h2>📝 Live Article Canvas &amp; Confirmation</h2>
+            <p>Review the AI generated content, tags, and cover image before publishing.</p>
+          </div>
+          
+          <button id="publishBtn" class="btn-gold" onclick="confirmAndPublish()" style="display:none; width:auto; padding:10px 22px;">
+            <span>🚀 Approve &amp; Publish to Blogger</span>
+          </button>
+        </div>
+
+        <div id="previewCanvas" class="preview-canvas">
+          <h1 id="previewTitle" class="preview-title">Welcome to Raja Priya Group AI CMS</h1>
+          <div id="previewMeta" class="preview-meta">Enter a topic on the left panel to begin AI content generation.</div>
+          <div id="previewTags" class="preview-tags"></div>
+          <div id="previewContent">
+            <p style="color:#86868b; line-height:1.7;">
+              This cloud platform allows you and your employees to generate complete SEO articles with cover graphics, meta descriptions, and HTML styling from any smartphone or computer, then publish directly to <strong>rajapriyagroup.blogspot.com</strong> after confirmation.
+            </p>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- TOAST NOTIFICATION -->
+  <div id="toast" class="toast"></div>
+
+  <!-- JS Logic -->
+  <script src="js/app.js"></script>
+</body>
+</html>
