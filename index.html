@@ -12,7 +12,7 @@
 
   <style>
     /* ==========================================================================
-       RAJA PRIYA GROUP — AI BLOGGER CMS (SECRET EMAIL-TO-POST AUTOMATION)
+       RAJA PRIYA GROUP — AI BLOGGER CMS (AUTO SAVED SECRET EMAIL)
        ========================================================================== */
     :root {
       --bg-main:          #07080a;
@@ -413,11 +413,11 @@
           </select>
         </div>
 
-        <!-- SECRET BLOGGER EMAIL SETTING (OPTIONAL 1-CLICK EMAIL PUBLISH) -->
+        <!-- SECRET BLOGGER EMAIL SETTING -->
         <div class="form-group" style="margin-top:24px; padding-top:20px; border-top:1px solid rgba(255,255,255,0.06);">
-          <label class="form-label" style="color:var(--color-gold);">✉️ Secret Blogger Email (Optional Automatic Post)</label>
-          <input type="email" id="secretEmailInput" class="form-input" placeholder="e.g. username.secretword@blogger.com" />
-          <span style="font-size:0.78rem; color:var(--text-muted); display:block; margin-top:6px;">Set once in Blogger Settings -> Publishing posts using email.</span>
+          <label class="form-label" style="color:var(--color-gold);">✉️ Secret Blogger Email (For 1-Click Auto Post)</label>
+          <input type="email" id="secretEmailInput" class="form-input" placeholder="rajapriyagroup.rajapriya123@blogger.com" onchange="saveSecretEmail()" />
+          <span style="font-size:0.78rem; color:var(--text-muted); display:block; margin-top:6px;">Paste your secret email here once to enable 1-Click Automatic Publishing!</span>
         </div>
 
         <button class="btn-gold" onclick="generateAIArticle()">
@@ -461,18 +461,18 @@
       <h2 style="font-family:var(--font-heading); color:#ffffff; font-size:1.5rem; margin-bottom:8px;">🎉 Ready to Publish!</h2>
       <p style="color:var(--text-secondary); font-size:0.88rem; margin-bottom:20px;">Choose your preferred publishing method below:</p>
 
-      <!-- METHOD A: AUTOMATIC EMAIL-TO-POST (IF SECRET EMAIL IS ENTERED) -->
-      <div id="emailPublishBox" class="step-box" style="border-color:var(--color-gold); background:rgba(212,175,55,0.08); display:none;">
+      <!-- METHOD 1: AUTOMATIC EMAIL-TO-POST -->
+      <div id="emailPublishBox" class="step-box" style="border-color:var(--color-gold); background:rgba(212,175,55,0.08);">
         <div class="step-header">
           <span style="font-size:0.8rem; font-weight:700; color:var(--color-gold); text-transform:uppercase;">⚡ Method 1: 1-Click Auto Email Publish</span>
         </div>
-        <p style="color:#ffffff; font-size:0.88rem; margin-bottom:12px;">Send an automated email to your secret Blogger address to publish immediately!</p>
+        <p style="color:#ffffff; font-size:0.88rem; margin-bottom:12px;">Sends automated email to your secret Blogger address to publish immediately!</p>
         <a id="emailSendBtn" href="#" class="btn-gold" style="text-decoration:none; text-align:center;">
           <span>✉️ Click to Send Email (Auto-Publishes Live!)</span>
         </a>
       </div>
 
-      <!-- METHOD B: 3-STEP COPY ASSISTANT -->
+      <!-- METHOD 2: 3-STEP COPY ASSISTANT -->
       <div class="step-box">
         <div class="step-header">
           <span style="font-size:0.8rem; font-weight:700; color:var(--color-gold); text-transform:uppercase;">Method 2: Copy &amp; Paste Assistant</span>
@@ -531,6 +531,20 @@
     };
 
     let currentArticle = null;
+
+    // Load saved secret email on startup
+    window.addEventListener('DOMContentLoaded', () => {
+      const savedEmail = localStorage.getItem('blogger_secret_email') || 'rajapriyagroup.rajapriya123@blogger.com';
+      document.getElementById('secretEmailInput').value = savedEmail;
+    });
+
+    function saveSecretEmail() {
+      const email = document.getElementById('secretEmailInput').value.trim();
+      if (email) {
+        localStorage.setItem('blogger_secret_email', email);
+        showToast('💾 Secret Email Saved!');
+      }
+    }
 
     function generateAIArticle() {
       const topicInput = document.getElementById('topicInput').value.trim();
@@ -627,17 +641,9 @@
       document.getElementById('modalTitleCopy').innerText = currentArticle.title;
       document.getElementById('modalTagsCopy').innerText = currentArticle.labels.join(', ');
 
-      // Secret email auto-publisher setup
-      const secretEmail = document.getElementById('secretEmailInput').value.trim();
-      const emailBox = document.getElementById('emailPublishBox');
-      
-      if (secretEmail) {
-        const mailtoUrl = `mailto:${secretEmail}?subject=${encodeURIComponent(currentArticle.title)}&body=${encodeURIComponent(currentArticle.htmlBody)}`;
-        document.getElementById('emailSendBtn').href = mailtoUrl;
-        emailBox.style.display = 'block';
-      } else {
-        emailBox.style.display = 'none';
-      }
+      const secretEmail = document.getElementById('secretEmailInput').value.trim() || 'rajapriyagroup.rajapriya123@blogger.com';
+      const mailtoUrl = `mailto:${secretEmail}?subject=${encodeURIComponent(currentArticle.title)}&body=${encodeURIComponent(currentArticle.htmlBody)}`;
+      document.getElementById('emailSendBtn').href = mailtoUrl;
 
       document.getElementById('publishModal').classList.add('show');
     }
