@@ -7,11 +7,289 @@
 
   <!-- Google Fonts: Outfit & Plus Jakarta Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="crossorigin" />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet" />
 
-  <!-- CSS Stylesheet -->
-  <link rel="stylesheet" href="css/styles.css" />
+  <style>
+    /* ==========================================================================
+       RAJA PRIYA GROUP — AI BLOGGER CMS (VERCEL SELF-CONTAINED STYLES)
+       ========================================================================== */
+    :root {
+      --bg-main:          #07080a;
+      --bg-surface:       #121318;
+      --bg-glass:         rgba(18, 19, 24, 0.88);
+      --bg-glass-card:    rgba(22, 23, 29, 0.78);
+      
+      --color-gold:       #d4af37;
+      --color-gold-glow:  #f3e096;
+      --color-gold-deep:  #8a6f23;
+      --color-success:    #34c759;
+      
+      --text-primary:     #f5f5f7;
+      --text-secondary:   #86868b;
+      --text-muted:       #6e6e73;
+
+      --font-heading: 'Outfit', -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+      --font-body:    'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif;
+
+      --gradient-gold: linear-gradient(135deg, #c59b27 0%, #e6c867 50%, #f7e6a1 100%);
+      --border-glass: 1px solid rgba(255, 255, 255, 0.08);
+      --border-gold:  1px solid rgba(212, 175, 55, 0.35);
+      
+      --radius-sm:  8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+      --radius-xl: 28px;
+      
+      --shadow-apple: 0 20px 40px rgba(0, 0, 0, 0.6);
+      --ease-apple: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      background-color: var(--bg-main);
+      color: var(--text-primary);
+      font-family: var(--font-body);
+      line-height: 1.65;
+      min-height: 100vh;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Container */
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Navbar */
+    .cms-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: var(--bg-glass);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border-bottom: var(--border-glass);
+    }
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 74px;
+    }
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-heading);
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: #ffffff;
+      text-decoration: none;
+    }
+    .brand-logo span {
+      background: var(--gradient-gold);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .badge-cms {
+      background: rgba(212, 175, 55, 0.12);
+      border: var(--border-gold);
+      color: var(--color-gold);
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: var(--radius-xl);
+      text-transform: uppercase;
+    }
+
+    .user-profile {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.04);
+      border: var(--border-glass);
+      padding: 6px 14px;
+      border-radius: var(--radius-xl);
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+    }
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--color-success);
+      box-shadow: 0 0 10px var(--color-success);
+    }
+
+    /* Dashboard Layout */
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: 440px 1fr;
+      gap: 32px;
+      padding: 40px 0 80px;
+    }
+    @media (max-width: 992px) {
+      .dashboard-grid { grid-template-columns: 1fr; }
+    }
+
+    /* Glass Panels */
+    .cms-card {
+      background: var(--bg-glass-card);
+      backdrop-filter: blur(20px);
+      border: var(--border-glass);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      box-shadow: var(--shadow-apple);
+    }
+    .card-head {
+      margin-bottom: 24px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+    .card-head h2 {
+      font-family: var(--font-heading);
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: #ffffff;
+    }
+    .card-head p {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+    }
+
+    /* Form Inputs */
+    .form-group {
+      margin-bottom: 20px;
+    }
+    .form-label {
+      display: block;
+      font-size: 0.84rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--color-gold);
+      margin-bottom: 8px;
+    }
+    .form-input, .form-textarea, .form-select {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.04);
+      border: var(--border-glass);
+      color: #ffffff;
+      padding: 14px 18px;
+      border-radius: var(--radius-md);
+      font-family: inherit;
+      font-size: 0.95rem;
+      transition: all 0.25s var(--ease-apple);
+    }
+    .form-input:focus, .form-textarea:focus, .form-select:focus {
+      outline: none;
+      border-color: var(--color-gold);
+      background: rgba(212, 175, 55, 0.06);
+      box-shadow: 0 0 16px rgba(212, 175, 55, 0.2);
+    }
+
+    /* Buttons */
+    .btn-gold {
+      background: var(--gradient-gold);
+      color: #07080a;
+      font-weight: 700;
+      font-size: 0.92rem;
+      padding: 14px 28px;
+      border-radius: var(--radius-xl);
+      border: none;
+      cursor: pointer;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      box-shadow: 0 8px 24px rgba(212, 175, 55, 0.25);
+      transition: transform 0.25s var(--ease-apple), box-shadow 0.25s var(--ease-apple);
+    }
+    .btn-gold:hover {
+      transform: translateY(-2px) scale(1.01);
+      box-shadow: 0 12px 32px rgba(212, 175, 55, 0.4);
+    }
+
+    /* Live Preview Canvas */
+    .preview-canvas {
+      background: #0d0e12;
+      border: var(--border-gold);
+      border-radius: var(--radius-lg);
+      padding: 40px;
+      min-height: 500px;
+    }
+    @media (max-width: 640px) {
+      .preview-canvas { padding: 20px; }
+    }
+    .preview-title {
+      font-family: var(--font-heading);
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 16px;
+    }
+    .preview-meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.85rem;
+      color: var(--color-gold);
+      margin-bottom: 24px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .preview-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+    .tag-chip {
+      background: rgba(212, 175, 55, 0.1);
+      border: var(--border-gold);
+      color: var(--color-gold);
+      font-size: 0.76rem;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: var(--radius-xl);
+    }
+
+    /* Toast Notification */
+    .toast {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      z-index: 2000;
+      background: rgba(18, 19, 24, 0.94);
+      backdrop-filter: blur(16px);
+      border: var(--border-gold);
+      color: #ffffff;
+      padding: 14px 24px;
+      border-radius: var(--radius-xl);
+      font-size: 0.9rem;
+      font-weight: 600;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+      display: none;
+      align-items: center;
+      gap: 10px;
+      transform: translateY(20px);
+      transition: all 0.3s var(--ease-apple);
+    }
+    .toast.show {
+      display: flex;
+      transform: translateY(0);
+    }
+  </style>
 </head>
 
 <body>
@@ -70,7 +348,7 @@
 
       <!-- RIGHT: LIVE PREVIEW & CONFIRMATION CANVAS -->
       <section class="cms-card">
-        <div class="card-head" style="display:flex; align-items:center; justify-content:space-between;">
+        <div class="card-head" style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px;">
           <div>
             <h2>📝 Live Article Canvas &amp; Confirmation</h2>
             <p>Review the AI generated content, tags, and cover image before publishing.</p>
@@ -99,7 +377,133 @@
   <!-- TOAST NOTIFICATION -->
   <div id="toast" class="toast"></div>
 
-  <!-- JS Logic -->
-  <script src="js/app.js"></script>
+  <!-- EMBEDDED JAVASCRIPT LOGIC -->
+  <script>
+    const CATEGORY_MAP = {
+      'real estate': ['Real Estate', 'Hyderabad', 'Plot Investment', 'Construction'],
+      'video': ['Video Editing', 'Reels', 'Motion Graphics', 'Branding'],
+      'web': ['Website Development', 'Web Design', 'SEO', 'Digital Solutions'],
+      'brand': ['Brand Growth', 'Digital Marketing', 'Social Media', 'Lead Generation']
+    };
+
+    const IMAGE_ASSETS = {
+      'real estate': 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=1200&q=80',
+      'video': 'https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?auto=format&fit=crop&w=1200&q=80',
+      'web': 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80',
+      'brand': 'https://images.unsplash.com/photo-1432888622747-4eb9a8efeb07?auto=format&fit=crop&w=1200&q=80'
+    };
+
+    let currentArticle = null;
+
+    function generateAIArticle() {
+      const topicInput = document.getElementById('topicInput').value.trim();
+      const summaryInput = document.getElementById('summaryInput').value.trim();
+
+      if (!topicInput) {
+        showToast('⚠️ Please enter a Topic or Summary first!');
+        return;
+      }
+
+      showToast('⚡ AI is generating full article & cover graphic...');
+
+      const topicLower = topicInput.toLowerCase();
+      let labels = ['Raja Priya Group', 'Insights'];
+      let coverImg = IMAGE_ASSETS['real estate'];
+
+      for (const [key, tags] of Object.entries(CATEGORY_MAP)) {
+        if (topicLower.includes(key)) {
+          labels = labels.concat(tags);
+          coverImg = IMAGE_ASSETS[key];
+          break;
+        }
+      }
+
+      const title = topicInput.replace(/\w\S*/g, (txt) => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase());
+      const metaDescription = `Discover expert insights on ${topicInput} from Raja Priya Group in Hyderabad. Full market guide & ROI strategies.`;
+
+      const htmlBody = `
+    <div class="article-content">
+      <p class="lead" style="font-size:1.15rem; line-height:1.75; color:#f5f5f7; font-weight:500;">
+        ${summaryInput ? summaryInput : `In today's fast-evolving market, understanding ${topicInput} is crucial for long-term growth and high ROI. Raja Priya Group brings you an in-depth analysis and expert guide.`}
+      </p>
+
+      <div style="margin:24px 0; border-radius:16px; overflow:hidden; border:1px solid rgba(212,175,55,0.35);">
+        <img src="${coverImg}" alt="${title}" style="width:100%; height:auto; display:block;" />
+      </div>
+
+      <h2 style="font-family:'Outfit', sans-serif; font-size:1.8rem; color:#d4af37; margin:32px 0 16px;">
+        1. Key Market Trends & Strategic Advantages
+      </h2>
+      <p style="line-height:1.75; color:#e3e3e8; margin-bottom:16px;">
+        Navigating ${topicInput} requires a structured approach. Whether scaling your digital presence or investing strategically in Hyderabad, timing and execution are paramount.
+      </p>
+      <ul style="margin-left:20px; line-height:1.8; color:#86868b; margin-bottom:24px;">
+        <li><strong style="color:#ffffff;">Targeted Reach:</strong> Tailored strategies designed for maximum engagement.</li>
+        <li><strong style="color:#ffffff;">Professional Execution:</strong> High-grade production and execution standards.</li>
+        <li><strong style="color:#ffffff;">Long-Term Value:</strong> Built to generate sustainable returns and brand equity.</li>
+      </ul>
+
+      <h2 style="font-family:'Outfit', sans-serif; font-size:1.8rem; color:#d4af37; margin:32px 0 16px;">
+        2. How Raja Priya Group Delivers Results
+      </h2>
+      <p style="line-height:1.75; color:#e3e3e8; margin-bottom:16px;">
+        At Raja Priya Group, we integrate real estate development expertise with cutting-edge digital media services (Video Editing, Web Development, and Brand Growth) to deliver seamless end-to-end solutions.
+      </p>
+
+      <div style="background:rgba(212,175,55,0.08); border:1px solid rgba(212,175,55,0.4); padding:24px; border-radius:16px; margin:32px 0;">
+        <h3 style="color:#ffffff; margin-bottom:8px; font-size:1.3rem;">💡 Ready to Transform Your Growth?</h3>
+        <p style="color:#86868b; margin-bottom:16px;">Get expert consultation for real estate, construction, video editing, or digital brand promotion in Hyderabad.</p>
+        <a href="https://editzaar.github.io/rajapriyagroup-creator/contact.html" style="background:linear-gradient(135deg, #c59b27, #e6c867); color:#07080a; font-weight:700; padding:12px 24px; border-radius:24px; text-decoration:none; display:inline-block;">Get Free Consultation &rarr;</a>
+      </div>
+    </div>
+    `;
+
+      currentArticle = {
+        title,
+        labels,
+        metaDescription,
+        coverImg,
+        htmlBody,
+        generatedAt: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+      };
+
+      renderPreview();
+      showToast('✅ AI Article & Cover Image Ready for Confirmation!');
+    }
+
+    function renderPreview() {
+      if (!currentArticle) return;
+
+      document.getElementById('previewTitle').innerText = currentArticle.title;
+      document.getElementById('previewMeta').innerText = `Published: ${currentArticle.generatedAt} • Author: Raja Priya Group`;
+
+      const tagsContainer = document.getElementById('previewTags');
+      tagsContainer.innerHTML = currentArticle.labels.map(label => `<span class="tag-chip">${label}</span>`).join('');
+
+      document.getElementById('previewContent').innerHTML = currentArticle.htmlBody;
+      document.getElementById('publishBtn').style.display = 'flex';
+    }
+
+    function confirmAndPublish() {
+      if (!currentArticle) return;
+
+      showToast('🎉 Article Confirmed & Published!');
+
+      const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(currentArticle, null, 2));
+      const downloadAnchor = document.createElement('a');
+      downloadAnchor.setAttribute("href", dataStr);
+      downloadAnchor.setAttribute("download", `${currentArticle.title.toLowerCase().replace(/[^a-z0-9]/g, '_')}.json`);
+      document.body.appendChild(downloadAnchor);
+      downloadAnchor.click();
+      downloadAnchor.remove();
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      toast.innerText = msg;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 3500);
+    }
+  </script>
 </body>
 </html>
